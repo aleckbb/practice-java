@@ -1,5 +1,8 @@
 package org.example;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,8 +11,10 @@ import java.util.Scanner;
 class EcosystemSimulator {
     public static final int FOREST_SIZE = 20;
     private final List<Organism> organisms;
+    private static final Logger logger = LogManager.getLogger(EcosystemSimulator.class);
 
     public EcosystemSimulator(int plants, int herbivores, int predators) {
+        logger.info("Инициализация симуляции: растения={}, травоядные={}, хищники={}", plants, herbivores, predators);
         organisms = new ArrayList<>();
         Random rand = new Random();
 
