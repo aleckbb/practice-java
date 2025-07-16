@@ -16,6 +16,5 @@ public class Main {
     public static void main(String[] args) {
         EcosystemSimulator simulator = new EcosystemSimulator(10, 15, 5);
         simulator.startSimulation();
-        System.out.println("Некоторые изменения");
     }
 }
