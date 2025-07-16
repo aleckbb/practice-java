@@ -11,6 +11,8 @@ class Predator extends Organism {
     private static final int REPRODUCTION_ENERGY = 25;
     public static final int EAT_ENERGY = 10;
 
+    private static final int MAX_AGE = 30;
+
     private static final Logger logger = LogManager.getLogger(Predator.class);
 
     public Predator(int x, int y) {
@@ -48,5 +50,10 @@ class Predator extends Organism {
             newOrganisms.add(child);
             logger.info("{} размножился → {}", getPositionInfo(), child.getPositionInfo());
         }
+    }
+
+    @Override
+    protected int getMaxAge() {
+        return MAX_AGE;
     }
 }

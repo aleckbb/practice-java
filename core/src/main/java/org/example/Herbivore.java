@@ -11,6 +11,8 @@ class Herbivore extends Organism {
     private static final int REPRODUCTION_ENERGY = 15;
     public static final int EAT_ENERGY = 5;
 
+    private static final int MAX_AGE = 20;
+
     private static final Logger logger = LogManager.getLogger(Herbivore.class);
 
     public Herbivore(int x, int y) {
@@ -48,6 +50,11 @@ class Herbivore extends Organism {
             newOrganisms.add(child);
             logger.info("{} размножилось → {}", getPositionInfo(), child.getPositionInfo());
         }
+    }
+
+    @Override
+    protected int getMaxAge() {
+        return MAX_AGE;
     }
 }
 

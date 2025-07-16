@@ -58,7 +58,6 @@ class EcosystemSimulator {
             }
 
             organisms.addAll(newOrganisms);
-
             organisms.removeIf(org -> !org.isAlive());
 
             printEcosystem();
