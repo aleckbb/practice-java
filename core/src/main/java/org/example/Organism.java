@@ -40,7 +40,13 @@ abstract class Organism {
             alive = false;
             logger.info("{} умер от голода", getPositionInfo());
         }
+        if (age > getMaxAge()) {
+            alive = false;
+            logger.info("{} умер от старости (age={})", getPositionInfo(), age);
+        }
     }
+
+    protected abstract int getMaxAge();
 
     public boolean isAlive() {
         return alive;

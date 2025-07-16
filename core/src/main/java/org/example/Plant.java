@@ -9,6 +9,8 @@ class Plant extends Organism {
     private static final int GROW_ENERGY = 5;
     private static final int REPRODUCTION_THRESHOLD = 8;
 
+    private static final int MAX_AGE = 10;
+
     private static final Logger logger = LogManager.getLogger(Plant.class);
 
     public Plant(int x, int y) {
@@ -35,5 +37,10 @@ class Plant extends Organism {
             newOrganisms.add(plant);
             logger.info("{} размножилось → {}", getPositionInfo(), plant.getPositionInfo());
         }
+    }
+
+    @Override
+    protected int getMaxAge() {
+        return MAX_AGE;
     }
 }
