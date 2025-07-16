@@ -13,24 +13,46 @@ class EcosystemSimulator {
     private final List<Organism> organisms;
     private static final Logger logger = LogManager.getLogger(EcosystemSimulator.class);
 
-    public EcosystemSimulator(int plants, int herbivores, int predators) {
-        logger.info("Инициализация симуляции: растения={}, травоядные={}, хищники={}", plants, herbivores, predators);
-        organisms = new ArrayList<>();
-        Random rand = new Random();
+    private final Random random;
 
+    private final Scanner scanner;
+
+    public EcosystemSimulator(int plants, int herbivores, int predators) {
+        this(plants, herbivores, predators, new Random(), new Scanner(System.in));
+    }
+
+    public EcosystemSimulator(int plants, int herbivores, int predators,
+                              Random random, Scanner scanner) {
+        this.random = random;
+        this.scanner = scanner;
+        this.organisms = new ArrayList<>();
+        initializeOrganisms(plants, herbivores, predators);
+    }
+
+    void initializeOrganisms(int plants, int herbivores, int predators) {
+        logger.info("Инициализация симуляции: растения={}, травоядные={}, хищники={}", plants, herbivores, predators);
         for (int i = 0; i < plants; i++) {
-            organisms.add(new Plant(rand.nextInt(FOREST_SIZE), rand.nextInt(FOREST_SIZE)));
+            int x = random.nextInt(FOREST_SIZE);
+            int y = random.nextInt(FOREST_SIZE);
+            organisms.add(new Plant(x, y));
         }
         for (int i = 0; i < herbivores; i++) {
-            organisms.add(new Herbivore(rand.nextInt(FOREST_SIZE), rand.nextInt(FOREST_SIZE)));
+            int x = random.nextInt(FOREST_SIZE);
+            int y = random.nextInt(FOREST_SIZE);
+            organisms.add(new Herbivore(x, y));
         }
         for (int i = 0; i < predators; i++) {
-            organisms.add(new Predator(rand.nextInt(FOREST_SIZE), rand.nextInt(FOREST_SIZE)));
+            int x = random.nextInt(FOREST_SIZE);
+            int y = random.nextInt(FOREST_SIZE);
+            organisms.add(new Predator(x, y));
         }
     }
 
+    List<Organism> getOrganisms() {
+        return organisms;
+    }
+
     public void startSimulation() {
-        Scanner scanner = new Scanner(System.in);
         int day = 0;
 
         while (true) {
